@@ -9,7 +9,7 @@ class CreatePets < ActiveRecord::Migration[5.1]
       t.integer :filthiness, default: 0 #0 is clean, 10 is filthy
       t.integer :user_id
 
-      t. timestamps
+      t.timestamps
     end
   end
 end
