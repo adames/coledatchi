@@ -7,8 +7,8 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.integer :pet_hunger
       t.integer :pet_boredom
       t.integer :pet_filthiness
-      t.integer :pet_id
-      
+      t.integer :time_decay_id
+
       t.timestamps
     end
   end

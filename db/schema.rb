@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170707202520) do
     t.integer "pet_hunger"
     t.integer "pet_boredom"
     t.integer "pet_filthiness"
-    t.integer "pet_id"
+    t.integer "time_decay_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
