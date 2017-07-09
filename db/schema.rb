@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707202520) do
+ActiveRecord::Schema.define(version: 20170709194601) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
@@ -36,14 +36,23 @@ ActiveRecord::Schema.define(version: 20170707202520) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pet_types", force: :cascade do |t|
+    t.string "species"
+    t.string "greeting"
+    t.string "farewell"
+    t.string "happiness"
+    t.string "sadness"
+    t.string "anger"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.string "name"
-    t.string "species"
     t.integer "health", default: 10
     t.integer "hunger", default: 0
     t.integer "boredom", default: 0
     t.integer "filthiness", default: 0
     t.integer "user_id"
+    t.integer "pet_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170707202520) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.boolean "pet_owner", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

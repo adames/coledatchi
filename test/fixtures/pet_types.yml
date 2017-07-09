@@ -1,17 +1,14 @@
 # == Schema Information
 #
-# Table name: events
+# Table name: pet_types
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  description    :string
-#  pet_health     :integer
-#  pet_hunger     :integer
-#  pet_boredom    :integer
-#  pet_filthiness :integer
-#  time_decay_id  :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id        :integer          not null, primary key
+#  species   :string
+#  greeting  :string
+#  farewell  :string
+#  happiness :string
+#  sadness   :string
+#  anger     :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
