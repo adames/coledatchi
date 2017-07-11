@@ -9,7 +9,7 @@ require_relative '../config/environments/development.rb'
 
 users = []
 10.times do
-  users << User.create(username: Faker::HarryPotter.character)
+  users << User.create(name: Faker::HarryPotter.character)
 end
 
 pets = []
@@ -17,10 +17,11 @@ pets = []
   pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id)
 end
 
-# 10.times do |i|
-#   Story.create(history: [], pet_id: pets[i].id)
-# end
 
+# Event.create()
+Event.create(name: "Walk your pet", description: "You walked your pet", "results" => {happiness: 1, hunger: 1})
+Event.create(name: "Wash your pet", description: "You gave your pet a bath", "results" => {hygiene: 5})
+Event.create(name: "Feed your pet", description: "You fed your pet", "results" => {hunger: -5})
 
 
   # create_table "events", force: :cascade do |t|

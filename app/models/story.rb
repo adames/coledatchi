@@ -17,7 +17,7 @@ class Story < ApplicationRecord
 
   def update_story
     #this method should update stories on a pet depending on time
-    self.
+    Event.find( 1 + rand(Event.size))
 
   end
 
@@ -28,6 +28,7 @@ class Story < ApplicationRecord
   end
 
   def update_history
+
 
 
   end
