@@ -1,9 +1,9 @@
 class Event < ApplicationRecord
   belongs_to :story
 
-  name, description, results, requirements
+  # name, description, results, requirements
   #I'd like to add requirements
-  @@all_events = [bathed_in_fountain, new_friend, tripped_and_fell]
+  @@all_events = ["bathed_in_fountain", "new_friend", "tripped_and_fell"]
 
   def self.random_event
     self.new.send(rand(@@all_events)) # This creates a new event with attributes.
