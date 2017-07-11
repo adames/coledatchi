@@ -1,0 +1,7 @@
+<!-- This page is going to be the adopt a pet page. We should generate a list of pets to adopt -->
+<h1>What do you want to name your pet?</h1>
+<%= form_for @pet do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>

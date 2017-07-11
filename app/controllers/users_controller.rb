@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
 
-
-
-
-  def index
-    @users = User.all
+  def home
     if session[:user_id]
-      @current_user = User.find(session[:user_id])
-    else
+      redirect_to user_path(current_user)
     end
   end
 
+
+  def show
+    @user = current_user
+    # @user = params[:id] This is only for testing
+  end
 
   def new
     @user = User.new
@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     else
       render :new
     end
