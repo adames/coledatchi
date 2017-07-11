@@ -1,0 +1,12 @@
+<p>Your Name</p>
+<%= @user.name %>
+<p>Your Email</p>
+<%= @user.email %>
+<p>Created At</p>
+<%= @user.created_at %>
+<p>Pet</p>
+<% if @user.pets.last %>
+  <%=link_to @user.pets.last.name, pet_path(@user.pets.last) %>
+<% else %>
+  <%= link_to "Create a Pet", new_pet_path %>
+<% end %>
