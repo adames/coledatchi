@@ -17,9 +17,9 @@ pets = []
   pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id)
 end
 
-10.times do |i|
-  Story.create(history: [], pet_id: pets[i].id)
-end
+# 10.times do |i|
+#   Story.create(history: [], pet_id: pets[i].id)
+# end
 
 
 
