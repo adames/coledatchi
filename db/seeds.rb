@@ -9,12 +9,16 @@ require_relative '../config/environments/development.rb'
 
 users = []
 10.times do
-  users << User.create(name: Faker::HarryPotter.character)
+  users << User.create(name: Faker::HarryPotter.character, email: "admin", password_digest: "default")
 end
 
 pets = []
 10.times do |i|
   pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id)
+end
+stories = []
+10.times do |i|
+  stories << Story.create(pet_id: pets[i].id)
 end
 
 
