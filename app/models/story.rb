@@ -17,20 +17,13 @@ class Story < ApplicationRecord
 
   def update_story
     #this method should update stories on a pet depending on time
-    Event.find( 1 + rand(Event.size))
+    @random_event = Event.find( 1 + rand(Event.all.size))
+    puts "#{@random_event.description}"
+    #placeholder for now
 
   end
 
 
-  def random_event(requirements)
-    # given a set of requirements, it serves a random, appropriate event object.
 
-  end
-
-  def update_history
-
-
-
-  end
 
 end
