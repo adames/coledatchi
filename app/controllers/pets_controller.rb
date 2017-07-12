@@ -18,7 +18,6 @@ class PetsController < ApplicationController
 
   def show
     @story = StoryUpdate.new(@pet)
-    byebug
 
   end
 
