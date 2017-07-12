@@ -8,8 +8,8 @@
 require_relative '../config/environments/development.rb'
 
 users = []
-10.times do
-  users << User.create(name: Faker::HarryPotter.character, email: "admin", password_digest: "default")
+10.times do |i|
+  users << User.create(name: Faker::HarryPotter.character, email: "admin#{i}", password_digest: "default")
 end
 
 pets = []
