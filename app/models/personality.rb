@@ -3,8 +3,16 @@ class Personality < ApplicationRecord
 
   @@types = ['brave', 'curious', 'social']
 
-  def self.generate_random(pet_obj)
-    self.new(pet_type: @@types.sample, pet_id: pet_obj.id)
+  def self.types
+    @@types
+  end
+
+  def self.set_personality(pet_type, pet_object)
+    new_personality = self.new
+    new_personality.pet = pet_object
+    new_personality.pet_type = pet_type
+    new_personality.save
+    new_personality
   end
 
   # types I'm thinking so far = ['brave', 'curious', 'social']

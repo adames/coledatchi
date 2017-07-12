@@ -1,7 +1,9 @@
 <!-- This page is going to be the adopt a pet page. We should generate a list of pets to adopt -->
-<h1>What do you want to name your pet?</h1>
-<%= form_for @pet do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+
+<%= form_tag pets_path, method: :post do %>
+  <%= label_tag "What do you want to name your pet?" %>
+  <%= text_field_tag "pet[name]" %>
+  <%= label_tag "Which personality?" %>
+  <%= select_tag "pet[personality]", options_for_select(@personalities) %>
+  <%= submit_tag "Adopt Pet" %>
 <% end %>

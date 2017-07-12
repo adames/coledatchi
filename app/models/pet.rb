@@ -18,8 +18,6 @@ class Pet < ApplicationRecord
     @story.pet = self
     @story.save
 
-
-
   end
 
   def self.generate_random
