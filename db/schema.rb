@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20170712160421) do
     t.string "name"
     t.string "description"
     t.string "results"
-    t.integer "story_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170712160421) do
 
   create_table "stories", force: :cascade do |t|
     t.string "history"
+    t.integer "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

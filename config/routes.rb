@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # log out user
   delete '/sessions', to: 'sessions#destroy', as: 'logout'
 
+  get '/pets/:id/story', to: 'pets#story', as: 'story'
+
 
   resources :users, only: [:new, :create, :show]
 
