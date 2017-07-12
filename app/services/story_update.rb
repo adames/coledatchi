@@ -1,10 +1,21 @@
 
 class StoryUpdate
-  attr_accessor :pet
+  attr_accessor :pet, :story
   def initialize(pet)
     @pet = pet
     #params = pet object
   end
+
+  def perform
+    update_pet_only_from_time
+    update_story_personality
+    update_story_random
+  end
+
+
+
+
+
 
   def update_pet_only_from_time
     #this should update a pet's hunger, happiness, etc... based on time passed since last updated
@@ -14,7 +25,6 @@ class StoryUpdate
     pet.hygiene -= @time_passed / 2
     pet.hunger += @time_passed
     pet.save
-    # TODO move this to services, make a LivingEvents database
 
   end
 
@@ -32,7 +42,7 @@ class StoryUpdate
     unless @random_event.results[:hunger] == nil
       pet.hunger += @random_event.results[:hunger]
     end
-    pet.save
+    # pet.save
     pet.story.save
 
   end
@@ -41,6 +51,7 @@ class StoryUpdate
     #this method should update stories on a pet depending on time
     @random_event = PersonalEvent.find( 1 + rand(PersonalEvent.all.size))
     puts "#{@random_event.description}"
+
     pet.story.history << "#{@random_event.description} on #{Time.now.strftime("%A, %d on %I:%M%p")}"
     unless @random_event.results[:happiness] == nil
        pet.happiness += @random_event.results[:happiness]
@@ -51,12 +62,8 @@ class StoryUpdate
     unless @random_event.results[:hunger] == nil
       pet.hunger += @random_event.results[:hunger]
     end
-    # self.happiness += @random_event.results[:happiness]
-    # self.hygiene += @random_event.results[:hygiene]
-    # self.hunger += @random_event.results[:hunger]
-    pet.save
+    # pet.save
     pet.story.save
-    #placeholder for now
 
   end
 
