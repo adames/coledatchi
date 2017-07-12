@@ -2,6 +2,7 @@ class Story < ApplicationRecord
   belongs_to :pet
   serialize :history, Array
 
+  #story will call a run file from Services and create events based on LivingEvents, PersonalityEvents, and RandomEvents
 
 
   def update_pet_only_from_time
@@ -12,13 +13,14 @@ class Story < ApplicationRecord
     self.pet.hygiene -= @time_passed / 2
     self.pet.hunger += @time_passed
     self.pet.save
+    # TODO move this to services, make a LivingEvents database
 
   end
 
 
   def update_story
     #this method should update stories on a pet depending on time
-    @random_event = Event.find( 1 + rand(Event.all.size))
+    @random_event = RandomEvent.find( 1 + rand(RandomEvent.all.size))
     puts "#{@random_event.description}"
     self.history << "#{@random_event.description} on #{Time.now.strftime("%A, %d on %I:%M%p")}"
     unless @random_event.results[:happiness] == nil
