@@ -26,3 +26,4 @@
 </ul>
 
 <%= link_to "Take care of your pet", pet_care_path(@pet) %>
+<p><%= link_to 'Logout', sessions_path, method: :delete, data: {confirm: 'Are you sure?'} %></p>
