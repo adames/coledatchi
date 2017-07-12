@@ -20,7 +20,7 @@ class Story < ApplicationRecord
     #this method should update stories on a pet depending on time
     @random_event = Event.find( 1 + rand(Event.all.size))
     puts "#{@random_event.description}"
-    self.history << "#{@random_event.description} on #{Time.now}"
+    self.history << "#{@random_event.description} on #{Time.now.strftime("%A, %d on %I:%M%p")}"
     unless @random_event.results[:happiness] == nil
        self.pet.happiness += @random_event.results[:happiness]
     end
