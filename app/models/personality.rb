@@ -4,7 +4,7 @@ class Personality < ApplicationRecord
   @@types = ['brave', 'curious', 'social']
 
   def self.generate_random(pet_obj)
-    self.new(type: rand(@@types.sample, pet_id: pet_obj.id)
+    self.new(pet_type: rand(@@types.sample, pet_id: pet_obj.id))
   end
 
   # types I'm thinking so far = ['brave', 'curious', 'social']

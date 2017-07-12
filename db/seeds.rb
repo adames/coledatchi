@@ -25,7 +25,7 @@ end
 types = ['brave', 'curious', 'social']
 
 10.times do |i|
-  Personality.create(type: types[i % 3], pet_id: pets[i])
+  Personality.create(pet_type: types[i % 3], pet_id: pets[i])
 end
 
 
@@ -42,3 +42,8 @@ RandomEvent.create(name: "Haircut", description: "Your pet got a haircut", "resu
 RandomEvent.create(name: "Hotdate", description: "Your pet has a hot date planned", "results" => {happiness: 8})
 RandomEvent.create(name: "Play", description: "You rubbed your pet's belly", "results" => {happiness: 3})
 RandomEvent.create(name: "Sick", description: "You pet fell sick for a bit but is better now", "results" => {happiness: -5})
+
+
+PersonalEvent.create(name: "Brave", description: "Your pet slept without a night light", pet_type:types[0], "results" => {happiness: 3})
+PersonalEvent.create(name: "Curious", description: "Your pet explored a cave", pet_type:types[1], "results" => {hygiene: -5})
+PersonalEvent.create(name: "Social", description: "Your pet met a friend", pet_type:types[2], "results" => {happiness: 2})
