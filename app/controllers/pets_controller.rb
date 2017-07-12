@@ -1,4 +1,7 @@
 class PetsController < ApplicationController
+
+  before_action :find_pet, only: [:show, :story]
+
   def new
     @pet = Pet.new
   end
@@ -14,8 +17,17 @@ class PetsController < ApplicationController
   end
 
   def show
-    @pet = Pet.find(params[:id])
   end
+
+  def story
+    @story = StoryUpdate.new(@pet)
+    byebug
+
+
+  end
+
+
+
 
 
 private
@@ -23,4 +35,9 @@ private
   def pet_params
     params.require(:pet).permit(:name)
   end
+
+  def find_pet
+    @pet = Pet.find(params[:id])
+  end
+
 end
