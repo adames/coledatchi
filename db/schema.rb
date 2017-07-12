@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710225921) do
+ActiveRecord::Schema.define(version: 20170712160421) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "results"
+    t.integer "story_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "personalities", force: :cascade do |t|
+    t.string "type"
+    t.integer "pet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_personalities_on_pet_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -30,9 +39,16 @@ ActiveRecord::Schema.define(version: 20170710225921) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "random_events", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "results"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "stories", force: :cascade do |t|
     t.string "history"
-    t.integer "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

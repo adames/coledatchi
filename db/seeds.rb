@@ -16,9 +16,16 @@ pets = []
 10.times do |i|
   pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id)
 end
+
 stories = []
 10.times do |i|
   stories << Story.create(pet_id: pets[i].id)
+end
+
+types = ['brave', 'curious', 'social']
+
+10.times do |i|
+  Personality.create(type: types[i % 3], pet_id: pets[i])
 end
 
 
@@ -35,35 +42,3 @@ RandomEvent.create(name: "Haircut", description: "Your pet got a haircut", "resu
 RandomEvent.create(name: "Hotdate", description: "Your pet has a hot date planned", "results" => {happiness: 8})
 RandomEvent.create(name: "Play", description: "You rubbed your pet's belly", "results" => {happiness: 3})
 RandomEvent.create(name: "Sick", description: "You pet fell sick for a bit but is better now", "results" => {happiness: -5})
-
-
-  # create_table "events", force: :cascade do |t|
-  #   t.string "name"
-  #   t.string "description"
-  #   t.string "results"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
-  #
-  # create_table "pets", force: :cascade do |t|
-  #   t.string "name"
-  #   t.integer "happiness", default: 10
-  #   t.integer "hygiene", default: 10
-  #   t.integer "hunger", default: 0
-  #   t.integer "user_id"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
-  #
-  # create_table "stories", force: :cascade do |t|
-  #   t.string "history"
-  #   t.integer "pet_id"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
-  #
-  # create_table "users", force: :cascade do |t|
-  #   t.string "username"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
