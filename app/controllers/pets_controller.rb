@@ -4,10 +4,14 @@ class PetsController < ApplicationController
 
   def new
     @pet = Pet.new
+    @pet.new_story
+
   end
 
   def create
     @pet = Pet.new(name: pet_params[:name])
+    @pet.new_story
+
     @pet.user = current_user
     if @pet.save
       redirect_to pet_path(@pet)
@@ -17,8 +21,8 @@ class PetsController < ApplicationController
   end
 
   def show
-    @story = StoryUpdate.new(@pet)
-    byebug
+    @story = StoryUpdate.new(@pet).perform
+
 
   end
 
