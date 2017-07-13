@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # get '/pets/:id/story', to: 'pets#story', as: 'story'
 
-  get '/pets/:id/care', to: 'pets#care'
+  get '/pets/:id/care', to: 'pets#care', as: 'pet_care'
 
   post '/pets/:id/action', to: 'pets#action'
 
