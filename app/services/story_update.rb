@@ -31,21 +31,24 @@ class StoryUpdate
 
   def update_story_random
     #this method should update stories on a pet depending on time
-    @random_event = RandomEvent.find( 1 + rand(RandomEvent.all.size))
-    puts "#{@random_event.description}"
-    pet.story.history << "#{@random_event.description} on #{Time.now.strftime("%A, %d on %I:%M%p")}"
-    unless @random_event.results[:happiness] == nil
-       pet.happiness += @random_event.results[:happiness]
+    @ticks = @minutes_passed - 10
+    while @ticks > 0
+      @random_event = RandomEvent.find( 1 + rand(RandomEvent.all.size))
+      puts "#{@random_event.description}"
+      pet.story.history << "#{@random_event.description} on #{Time.now.strftime("%A, %d on %I:%M%p")}"
+      unless @random_event.results[:happiness] == nil
+         pet.happiness += @random_event.results[:happiness]
+      end
+      unless @random_event.results[:hygiene] == nil
+        pet.hygiene += @random_event.results[:hygiene]
+      end
+      unless @random_event.results[:hunger] == nil
+        pet.hunger += @random_event.results[:hunger]
+      end
+      pet.save
+      pet.story.save
+      @ticks -= (15 + rand(1..@ticks))
     end
-    unless @random_event.results[:hygiene] == nil
-      pet.hygiene += @random_event.results[:hygiene]
-    end
-    unless @random_event.results[:hunger] == nil
-      pet.hunger += @random_event.results[:hunger]
-    end
-    pet.save
-    pet.story.save
-
   end
 
   def update_story_personality
