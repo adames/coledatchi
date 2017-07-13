@@ -7,11 +7,12 @@ class Story < ApplicationRecord
 
   def update_pet_only_from_time
     #this should update a pet's hunger, happiness, etc... based on time passed since last updated
-    @last_hour_updated = self.pet.updated_at.localtime.hour
-    @time_passed = (Time.now.hour - @last_hour_updated).abs
-    self.pet.happiness -= @time_passed
-    self.pet.hygiene -= @time_passed / 2
-    self.pet.hunger += @time_passed
+    @last_updated = self.pet.updated_at.localtime
+    @minutes_passed = ((Time.now.hour - @last_updated) / 60).abs
+    @hours_passed = @minutes_passed / 60
+    self.pet.happiness -= @hours_passed
+    self.pet.hygiene -= @hours_passed / 2
+    self.pet.hunger += @hours_passed
     self.pet.save
     # TODO move this to services, make a LivingEvents database
 
