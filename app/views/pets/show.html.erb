@@ -1,7 +1,14 @@
 <p>Name</p>
 <%= @pet.name %>
 <p>Owner</p>
-<%= @pet.user %>
+<%= @pet.user.name %>
+
+<p>Right now</p>
+<%= @pet.display_happiness %> <br>
+<%= @pet.display_hygiene %> <br>
+<%= @pet.display_hunger %> <br>
+
+
 <p>Happiness</p>
 <%= @pet.happiness %>
 <p>Hygiene</p>
