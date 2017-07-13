@@ -20,7 +20,7 @@ class PetsController < ApplicationController
   end
 
   def show
-    @story = StoryUpdate.new(@pet)
+    @story = StoryUpdate.new(@pet).perform
   end
 
   def care
