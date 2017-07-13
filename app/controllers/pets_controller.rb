@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
 
-  before_action :find_pet, only: [:show, :story]
+  before_action :find_pet, only: [:show, :story, :care, :action]
 
   def new
     @pet = Pet.new
@@ -21,14 +21,25 @@ class PetsController < ApplicationController
 
   def show
     @story = StoryUpdate.new(@pet)
+  end
 
+  def care
+  end
+
+  def action
+    @action = pet_params[:action].downcase
+    @pet.send(@action)
+
+
+
+    redirect_to pet_path(@pet)
   end
 
 
 private
 
   def pet_params
-    params.require(:pet).permit(:name, :personality)
+    params.require(:pet).permit(:name, :personality, :action)
   end
 
   def find_pet

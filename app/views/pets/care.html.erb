@@ -1,0 +1,5 @@
+<%= form_tag "/pets/#{@pet.id}/action", method: :post do %>
+  <%= label_tag "What do you want to do with your pet?" %>
+  <%= select_tag "pet[action]", options_for_select(["Play","Wash","Feed","Explore","Fun"]) %>
+  <%= submit_tag "Choose" %>
+<% end %>

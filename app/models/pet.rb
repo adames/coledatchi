@@ -74,6 +74,35 @@ class Pet < ApplicationRecord
     end
   end
 
+  def play
+    self.happiness += 3
+    self.story.history << "You played with your pet on #{Time.now.strftime("%A, %d on %I:%M%p")} "
+    self.story.save
+    self.save
+  end
+
+  def wash
+    self.hygiene += 3
+    self.story.history << "You groomed your pet on #{Time.now.strftime("%A, %d on %I:%M%p")} "
+    self.story.save
+    self.save
+  end
+
+  def feed
+    self.hunger += 5
+    self.story.history << "You fed your pet on #{Time.now.strftime("%A, %d on %I:%M%p")} "
+    self.story.save
+    self.save
+  end
+
+  def explore
+    StoryUpdate.new(self).update_story_random
+  end
+
+  def fun
+    StoryUpdate.new(self).update_story_personality
+  end
+
 
 
 end

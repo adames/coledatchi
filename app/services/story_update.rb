@@ -43,7 +43,7 @@ class StoryUpdate
     unless @random_event.results[:hunger] == nil
       pet.hunger += @random_event.results[:hunger]
     end
-    # pet.save
+    pet.save
     pet.story.save
 
   end
@@ -63,7 +63,7 @@ class StoryUpdate
     unless @random_event.results[:hunger] == nil
       pet.hunger += @random_event.results[:hunger]
     end
-    # pet.save
+    pet.save
     pet.story.save
 
   end

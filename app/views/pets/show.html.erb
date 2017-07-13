@@ -16,6 +16,11 @@
 <p>Hunger</p>
 <%= @pet.hunger %>
 <p>Personality</p>
+<% byebug %>
 <%= @pet.personality %>
 <p>Story</p>
-<%= @pet.story.show_history %>
+<ul>
+<% @pet.story.show_history.reverse.each do |event| %>
+<li><%= event %></li>
+<% end %>
+</ul>

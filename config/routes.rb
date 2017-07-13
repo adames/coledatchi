@@ -10,10 +10,13 @@ Rails.application.routes.draw do
 
   # get '/pets/:id/story', to: 'pets#story', as: 'story'
 
+  get '/pets/:id/care', to: 'pets#care'
+
+  post '/pets/:id/action', to: 'pets#action'
 
   resources :users, only: [:new, :create, :show]
 
-
   resources :pets, only: [:new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
