@@ -25,7 +25,7 @@ end
 types = ['brave', 'curious', 'social']
 
 10.times do |i|
-  Personality.create(pet_type: types[i % 3], pet_id: pets[i])
+  Personality.create(pet_type: types[i % 3], pet_id: pets[i].id)
 end
 
 

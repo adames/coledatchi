@@ -1,6 +1,6 @@
 
 class StoryUpdate
-  attr_accessor :pet, :story
+  attr_accessor :pet, :story, :minutes_passed
   def initialize(pet)
     @pet = pet
     #params = pet object
@@ -9,7 +9,7 @@ class StoryUpdate
   def perform
     update_pet_only_from_time
     update_story_personality
-    update_story_random
+    # update_story_random
   end
 
 
@@ -25,13 +25,18 @@ class StoryUpdate
     self.pet.happiness -= @hours_passed
     self.pet.hygiene -= @hours_passed / 2
     self.pet.hunger += @hours_passed
+
+    update_story_random(@minutes_passed)
+
     pet.save
+    pet.story.save
 
   end
 
-  def update_story_random
+  def update_story_random(minutes)
     #this method should update stories on a pet depending on time
-    @ticks = @minutes_passed - 10
+
+    @ticks = minutes - 10
     while @ticks > 0
       @random_event = RandomEvent.find( 1 + rand(RandomEvent.all.size))
       puts "#{@random_event.description}"
@@ -45,9 +50,9 @@ class StoryUpdate
       unless @random_event.results[:hunger] == nil
         pet.hunger += @random_event.results[:hunger]
       end
-      pet.save
-      pet.story.save
-      @ticks -= (15 + rand(1..@ticks))
+      # pet.save
+      # pet.story.save
+      @ticks -= (5 + rand(1..@ticks))
     end
   end
 

@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       # let them in redirect_to some page
     else
       # couldnt log in
+      
       render :new
     end
 
