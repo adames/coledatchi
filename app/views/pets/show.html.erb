@@ -23,8 +23,8 @@
 
 <p>Story</p>
 <ul>
-<% @pet.story.show_history.reverse.each do |event| %>
-<li><%= event %></li>
+<% @pet.story.readable_history.each do |event| %>
+<li><%= "#{event.description} on #{event.event_time.strftime("%A, %d on %I:%M%p")}" %></li>
 <% end %>
 </ul>
 
