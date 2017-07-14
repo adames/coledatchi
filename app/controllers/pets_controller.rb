@@ -23,6 +23,7 @@ class PetsController < ApplicationController
 
   def show
     @story = StoryUpdate.new(@pet).perform
+    @pet.story.update_readable_history
   end
 
   def care
