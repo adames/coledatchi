@@ -1,5 +1,5 @@
 <!-- This page is going to be the adopt a pet page. We should generate a list of pets to adopt -->
-<p><%= button_to "Find New Random Pet", new_pet_path, method: 'GET' %></p>
+<p><%= button_to "Find New Random Pet", new_pet_path, method: 'get' %></p>
 <ul>
 <%= form_for @pet do |f| %>
   <li><%= f.label "What do you want to name your pet?" %></li>
