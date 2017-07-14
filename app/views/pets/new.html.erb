@@ -1,5 +1,6 @@
 <!-- This page is going to be the adopt a pet page. We should generate a list of pets to adopt -->
 <p><%= button_to "Find New Random Pet", new_pet_path, method: 'get' %></p>
+<%= image_tag( @pet.picture, :alt => @pet.name) %>
 <ul>
 <%= form_for @pet do |f| %>
   <li><%= f.label "What do you want to name your pet?" %></li>
@@ -14,6 +15,7 @@
   <ul>
     <li><%= f.text_field :species, value: @pet.species.name,:readonly => true %></li>
   </ul>
+  <%= f.hidden_field :picture %>
   <p><%= f.submit "Adopt Pet" %></p>
 <% end %>
 </ul>
