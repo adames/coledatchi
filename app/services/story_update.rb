@@ -55,23 +55,17 @@ class StoryUpdate
       end
       @ticks -= (300 + rand(1..@ticks))
     end
-
-
     pet.save
     pet.story.save
-
   end
 
   def update_story_personality
     #this method should update stories on a pet depending on time
     @random_event = PersonalEvent.find( 1 + rand(PersonalEvent.all.size))
     puts "#{@random_event.description}"
-
     h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now, results: @random_event.results)
     h.story = pet.story
     h.save
-
-    # pet.story.readable_history << "#{@random_event.description} on #{Time.now.strftime("%A, %d on %I:%M%p")}"
     unless @random_event.results[:happiness] == nil
        pet.happiness += @random_event.results[:happiness]
     end
