@@ -13,7 +13,6 @@ class PetsController < ApplicationController
     @pet.user = current_user
     @pet.picture = pet_params[:picture]
     @pet.new_story
-    byebug
     if @pet.save
       redirect_to pet_path(@pet)
     else
