@@ -5,11 +5,13 @@ class PetsController < ApplicationController
   def new
     @pet = Pet.new
     @personalities = Personality.types
+    @species = Species.types
   end
 
   def create
     @pet = Pet.new(name: pet_params[:name])
     @pet.personality = Personality.set_personality(pet_params[:personality], @pet)
+    @pet.species = Species.set_species(pet_params[:species])
     @pet.user = current_user
     @pet.new_story
     if @pet.save
@@ -30,8 +32,6 @@ class PetsController < ApplicationController
     @action = pet_params[:action].downcase
     @pet.send(@action)
 
-
-
     redirect_to pet_path(@pet)
   end
 
@@ -39,7 +39,7 @@ class PetsController < ApplicationController
 private
 
   def pet_params
-    params.require(:pet).permit(:name, :personality, :action)
+    params.require(:pet).permit(:name, :personality, :action, :species)
   end
 
   def find_pet

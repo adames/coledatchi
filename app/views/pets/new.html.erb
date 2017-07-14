@@ -5,5 +5,6 @@
   <%= text_field_tag "pet[name]" %>
   <%= label_tag "Which personality?" %>
   <%= select_tag "pet[personality]", options_for_select(@personalities) %>
+  <%= select_tag "pet[species]", options_for_select(@species) %>
   <%= submit_tag "Adopt Pet" %>
 <% end %>

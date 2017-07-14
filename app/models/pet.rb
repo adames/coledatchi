@@ -1,5 +1,6 @@
 class Pet < ApplicationRecord
   belongs_to :user
+  belongs_to :species
   has_one :story
   has_one :personality
 
@@ -8,7 +9,6 @@ class Pet < ApplicationRecord
     @story = Story.new
     @story.pet = self
     @story.save
-
   end
 
   def self.generate_random

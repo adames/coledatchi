@@ -12,9 +12,15 @@ users = []
   users << User.create(name: Faker::HarryPotter.character, email: "admin#{i}", password_digest: BCrypt::Password.create('default'))
 end
 
+species = []
+s_types = ['cat','dog','rock']
+10.times do |i|
+  species << Species.create(name: s_types[i % 3])
+end
+
 pets = []
 10.times do |i|
-  pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id)
+  pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id, species_id: species[i].id)
 end
 
 stories = []
@@ -22,10 +28,10 @@ stories = []
   stories << Story.create(pet_id: pets[i].id)
 end
 
-types = ['brave', 'curious', 'social']
+p_types = ['brave', 'curious', 'social']
 
 10.times do |i|
-  Personality.create(pet_type: types[i % 3], pet_id: pets[i].id)
+  Personality.create(pet_type: p_types[i % 3], pet_id: pets[i].id)
 end
 
 
@@ -44,18 +50,18 @@ RandomEvent.create(name: "Play", description: "You rubbed your pet's belly", "re
 RandomEvent.create(name: "Sick", description: "You pet fell sick for a bit but is better now", "results" => {happiness: -5})
 
 
-PersonalEvent.create(name: "Brave", description: "Your pet slept without a night light", pet_type:types[0], "results" => {happiness: 1})
-PersonalEvent.create(name: "Brave", description: "Your pet went skydiving", pet_type:types[0], "results" => {happiness: 2})
-PersonalEvent.create(name: "Brave", description: "Your pet rode a bike without a helmet", pet_type:types[0], "results" => {happiness: 1})
-PersonalEvent.create(name: "Brave", description: "Your pet went spelunking", pet_type:types[0], "results" => {happiness: 3, hygiene: -10})
-PersonalEvent.create(name: "Brave", description: "Your pet played russian roulette", pet_type:types[0], "results" => {happiness: 3})
-PersonalEvent.create(name: "Curious", description: "Your pet explored a cave", pet_type:types[1], "results" => {hygiene: -5, happiness: 5})
-PersonalEvent.create(name: "Curious", description: "Your pet cooked meth", pet_type:types[1], "results" => {hygiene: -5, happiness: -2})
-PersonalEvent.create(name: "Curious", description: "Your pet explored an abandoned tomb", pet_type:types[1], "results" => {hygiene: -3, happiness: 6})
-PersonalEvent.create(name: "Curious", description: "Your pet discovered ancient ruins", pet_type:types[1], "results" => {hygiene: -3, happiness: 6})
-PersonalEvent.create(name: "Curious", description: "Your pet poked a dead rodent", pet_type:types[1], "results" => {hygiene: -6, happiness: 3})
-PersonalEvent.create(name: "Social", description: "Your pet gave a leadership presentation", pet_type:types[2], "results" => {happiness: 3})
-PersonalEvent.create(name: "Social", description: "Your pet helped a fellow pet through a divorce", pet_type:types[2], "results" => {happiness: 2})
-PersonalEvent.create(name: "Social", description: "Your pet cheered for a friend", pet_type:types[2], "results" => {happiness: 1})
-PersonalEvent.create(name: "Social", description: "Your pet went clubbing", pet_type:types[2], "results" => {happiness: 4, hunger: -4})
-PersonalEvent.create(name: "Social", description: "Your pet met a friend", pet_type:types[2], "results" => {happiness: 1})
+PersonalEvent.create(name: "Brave", description: "Your pet slept without a night light", pet_type: p_types[0], "results" => {happiness: 1})
+PersonalEvent.create(name: "Brave", description: "Your pet went skydiving", pet_type: p_types[0], "results" => {happiness: 2})
+PersonalEvent.create(name: "Brave", description: "Your pet rode a bike without a helmet", pet_type:p_types[0], "results" => {happiness: 1})
+PersonalEvent.create(name: "Brave", description: "Your pet went spelunking", pet_type: p_types[0], "results" => {happiness: 3, hygiene: -10})
+PersonalEvent.create(name: "Brave", description: "Your pet played russian roulette", pet_type: p_types[0], "results" => {happiness: 3})
+PersonalEvent.create(name: "Curious", description: "Your pet explored a cave", pet_type: p_types[1], "results" => {hygiene: -5, happiness: 5})
+PersonalEvent.create(name: "Curious", description: "Your pet cooked meth", pet_type: p_types[1], "results" => {hygiene: -5, happiness: -2})
+PersonalEvent.create(name: "Curious", description: "Your pet explored an abandoned tomb", pet_type: p_types[1], "results" => {hygiene: -3, happiness: 6})
+PersonalEvent.create(name: "Curious", description: "Your pet discovered ancient ruins", pet_type:p_types[1], "results" => {hygiene: -3, happiness: 6})
+PersonalEvent.create(name: "Curious", description: "Your pet poked a dead rodent", pet_type: p_types[1], "results" => {hygiene: -6, happiness: 3})
+PersonalEvent.create(name: "Social", description: "Your pet gave a leadership presentation", pet_type: p_types[2], "results" => {happiness: 3})
+PersonalEvent.create(name: "Social", description: "Your pet helped a fellow pet through a divorce", pet_type: p_types[2], "results" => {happiness: 2})
+PersonalEvent.create(name: "Social", description: "Your pet cheered for a friend", pet_type: p_types[2], "results" => {happiness: 1})
+PersonalEvent.create(name: "Social", description: "Your pet went clubbing", pet_type: p_types[2], "results" => {happiness: 4, hunger: -4})
+PersonalEvent.create(name: "Social", description: "Your pet met a friend", pet_type: p_types[2], "results" => {happiness: 1})

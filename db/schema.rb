@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712183050) do
+ActiveRecord::Schema.define(version: 20170714134305) do
 
   create_table "personal_events", force: :cascade do |t|
     t.string "name"
@@ -35,8 +35,11 @@ ActiveRecord::Schema.define(version: 20170712183050) do
     t.integer "hygiene", default: 10
     t.integer "hunger", default: 0
     t.integer "user_id"
+    t.integer "species_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["species_id"], name: "index_pets_on_species_id"
+    t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
   create_table "random_events", force: :cascade do |t|
@@ -47,11 +50,18 @@ ActiveRecord::Schema.define(version: 20170712183050) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "species", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "stories", force: :cascade do |t|
     t.string "history"
     t.integer "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_stories_on_pet_id"
   end
 
   create_table "users", force: :cascade do |t|
