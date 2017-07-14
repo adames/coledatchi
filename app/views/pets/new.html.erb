@@ -1,10 +1,19 @@
 <!-- This page is going to be the adopt a pet page. We should generate a list of pets to adopt -->
-
-<%= form_tag pets_path, method: :post do %>
-  <%= label_tag "What do you want to name your pet?" %>
-  <%= text_field_tag "pet[name]" %>
-  <%= label_tag "Which personality?" %>
-  <%= select_tag "pet[personality]", options_for_select(@personalities) %>
-  <%= select_tag "pet[species]", options_for_select(@species) %>
-  <%= submit_tag "Adopt Pet" %>
+<p><%= button_to "Find New Random Pet", new_pet_path, method: 'GET' %></p>
+<ul>
+<%= form_for @pet do |f| %>
+  <li><%= f.label "What do you want to name your pet?" %></li>
+  <ul>
+    <li><%= f.text_field :name %></li>
+  </ul>
+  <li><%= f.label :personality %></li>
+  <ul>
+    <li><%= f.text_field :personality, value: @pet.personality.pet_type, :readonly => true %></li>
+  </ul>
+  <li><%= f.label :species %></li>
+  <ul>
+    <li><%= f.text_field :species, value: @pet.species.name,:readonly => true %></li>
+  </ul>
+  <p><%= f.submit "Adopt Pet" %></p>
 <% end %>
+</ul>

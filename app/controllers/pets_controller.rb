@@ -3,9 +3,7 @@ class PetsController < ApplicationController
   before_action :find_pet, only: [:show, :story, :care, :action]
 
   def new
-    @pet = Pet.new
-    @personalities = Personality.types
-    @species = Species.types
+    @pet = Pet.generate_random
   end
 
   def create

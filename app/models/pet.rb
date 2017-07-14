@@ -4,17 +4,18 @@ class Pet < ApplicationRecord
   has_one :story
   has_one :personality
 
-
   def new_story
     @story = Story.new
     @story.pet = self
-    @story.save
   end
 
   def self.generate_random
-    new_pet = self.new
-    new_pet.personality = Personality.generate_random(new_pet)
-    new_pet
+    random_pet = Pet.new(name: Faker::Pokemon.name)
+    random_pet.personality = Personality.generate_random(random_pet)
+    random_pet.species = Species.generate_random
+    # random_pet.user = user_obj
+    random_pet.new_story
+    random_pet
   end
 
   def display_hunger
