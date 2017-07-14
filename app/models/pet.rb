@@ -89,7 +89,7 @@ class Pet < ApplicationRecord
   end
 
   def explore
-    StoryUpdate.new(self).update_story_random
+    StoryUpdate.new(self).manual_random_event
   end
 
   def fun

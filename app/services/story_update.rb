@@ -1,22 +1,18 @@
 
 class StoryUpdate
-  attr_accessor :pet, :story, :minutes_passed
+  attr_accessor :pet, :story
   def initialize(pet)
     @pet = pet
-    #params = pet object
   end
 
   def perform
     update_pet_only_from_time
     update_story_personality
-    # update_readable_history
-    # update_story_random
   end
 
 
   def update_pet_only_from_time
     #this should update a pet's hunger, happiness, etc... based on time passed since last updated
-    # byebug
     @last_updated = pet.updated_at.localtime
     @minutes_passed = ((@last_updated - Time.now )/60).abs
     @hours_passed = @minutes_passed / 60
@@ -28,7 +24,6 @@ class StoryUpdate
 
     pet.save
     pet.story.save
-
   end
 
   def update_story_random(minutes, last_updated)
@@ -43,20 +38,20 @@ class StoryUpdate
       h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now, results: @random_event.results)
       h.story = pet.story
       h.save
-      # backwards_history << "#{@random_event.description} on #{last_updated.strftime("%A, %d on %I:%M%p")}"#{Time.now.strftime("%A, %d on %I:%M%p")}
-      unless @random_event.results[:happiness] == nil
-         pet.happiness += @random_event.results[:happiness]
-      end
-      unless @random_event.results[:hygiene] == nil
-        pet.hygiene += @random_event.results[:hygiene]
-      end
-      unless @random_event.results[:hunger] == nil
-        pet.hunger += @random_event.results[:hunger]
-      end
-      @ticks -= (300 + rand(1..@ticks))
+      update_results(@random_event)
+    @ticks -= (300 + rand(1..@ticks))
     end
     pet.save
     pet.story.save
+  end
+
+  def manual_random_event
+    @random_event = RandomEvent.find( 1 + rand(RandomEvent.all.size))
+    puts "#{@random_event.description}"
+    h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now, results: @random_event.results)
+    h.story = pet.story
+    h.save
+    update_results(@random_event)
   end
 
   def update_story_personality
@@ -66,14 +61,18 @@ class StoryUpdate
     h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now, results: @random_event.results)
     h.story = pet.story
     h.save
-    unless @random_event.results[:happiness] == nil
-       pet.happiness += @random_event.results[:happiness]
+    update_results(@random_event)
+  end
+
+  def update_results(event)
+    unless event.results[:happiness] == nil
+       pet.happiness += event.results[:happiness]
     end
-    unless @random_event.results[:hygiene] == nil
-      pet.hygiene += @random_event.results[:hygiene]
+    unless event.results[:hygiene] == nil
+      pet.hygiene += event.results[:hygiene]
     end
-    unless @random_event.results[:hunger] == nil
-      pet.hunger += @random_event.results[:hunger]
+    unless event.results[:hunger] == nil
+      pet.hunger += event.results[:hunger]
     end
     pet.save
     pet.story.save
