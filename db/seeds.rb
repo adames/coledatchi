@@ -20,7 +20,7 @@ end
 
 pets = []
 10.times do |i|
-  pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id, species_id: species[i].id)
+  pets << Pet.create(name: Faker::Pokemon.name, user_id: users[i].id, species_id: species[i].id, picture: Species.generate_picture(species[i].name))
 end
 
 stories = []

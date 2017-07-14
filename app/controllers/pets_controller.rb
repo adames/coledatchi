@@ -11,7 +11,9 @@ class PetsController < ApplicationController
     @pet.personality = Personality.set_personality(pet_params[:personality], @pet)
     @pet.species = Species.set_species(pet_params[:species])
     @pet.user = current_user
+    @pet.picture = pet_params[:picture]
     @pet.new_story
+    byebug
     if @pet.save
       redirect_to pet_path(@pet)
     else
@@ -37,7 +39,7 @@ class PetsController < ApplicationController
 private
 
   def pet_params
-    params.require(:pet).permit(:name, :personality, :action, :species)
+    params.require(:pet).permit(:name, :personality, :action, :species, :picture)
   end
 
   def find_pet

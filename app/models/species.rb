@@ -7,6 +7,13 @@ class Species < ApplicationRecord
     @@types
   end
 
+  # returns image path based on type
+  def self.generate_picture(type)
+    photo_path = Dir[ "app/assets/images/#{type.pluralize}/*.jpg" ].sample
+    photo_path.slice! "app/assets/images/"
+    photo_path
+  end
+
   def self.generate_random
     new_species = self.new
     new_species.name = self.types.sample

@@ -13,7 +13,7 @@ class Pet < ApplicationRecord
     random_pet = Pet.new(name: Faker::Pokemon.name)
     random_pet.personality = Personality.generate_random(random_pet)
     random_pet.species = Species.generate_random
-    # random_pet.user = user_obj
+    random_pet.picture = Species.generate_picture(random_pet.species.name)
     random_pet.new_story
     random_pet
   end
