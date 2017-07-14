@@ -34,13 +34,13 @@ class StoryUpdate
   def update_story_random(minutes, last_updated)
     #this method should update stories on a pet depending on time
 
-    @ticks = (minutes * 60) - 10
+    @ticks = (minutes * 60) - 120 #makes a random_event a minimum of 2 minutes before activating
     backwards_history = []
     while @ticks > 0
       @random_event = RandomEvent.find( 1 + rand(RandomEvent.all.size))
       puts "#{@random_event.description}"
       last_updated -= @ticks
-      h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now)
+      h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now, results: @random_event.results)
       h.story = pet.story
       h.save
       # backwards_history << "#{@random_event.description} on #{last_updated.strftime("%A, %d on %I:%M%p")}"#{Time.now.strftime("%A, %d on %I:%M%p")}
@@ -67,7 +67,7 @@ class StoryUpdate
     @random_event = PersonalEvent.find( 1 + rand(PersonalEvent.all.size))
     puts "#{@random_event.description}"
 
-    h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now)
+    h = History.new(name: @random_event.name, description: @random_event.description, event_time: Time.now, results: @random_event.results)
     h.story = pet.story
     h.save
 
@@ -83,6 +83,31 @@ class StoryUpdate
     end
     pet.save
     pet.story.save
+  end
+
+
+  def update_play
+    pet.happiness += 3
+    h = History.new(name: "Play", description: "You played with your pet", event_time: Time.now, "results" => {happiness: 3})
+    h.story = pet.story
+    h.save
+    pet.save
+  end
+
+  def update_wash
+    pet.hygiene += 3
+    h = History.new(name: "Wash", description: "You washed your pet", event_time: Time.now, "results" => {hygiene: 3})
+    h.story = pet.story
+    h.save
+    pet.save
+  end
+
+  def update_feed
+    pet.hunger += 5
+    h = History.new(name: "Feed", description: "You fed your pet", event_time: Time.now, "results" => {hunger: 5})
+    h.story = pet.story
+    h.save
+    pet.save
   end
 
 

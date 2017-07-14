@@ -4,6 +4,7 @@ class CreateHistories < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :description
       t.datetime :event_time
+      t.string :results
       t.belongs_to :story, foreign_key: true
 
       t.timestamps

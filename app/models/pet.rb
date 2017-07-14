@@ -2,6 +2,7 @@ class Pet < ApplicationRecord
   belongs_to :user
   belongs_to :species
   has_one :story
+  has_many :histories, through: :story
   has_one :personality
 
   def new_story
@@ -76,24 +77,15 @@ class Pet < ApplicationRecord
   end
 
   def play
-    self.happiness += 3
-    self.story.history << "You played with your pet on #{Time.now.strftime("%A, %d on %I:%M%p")} "
-    self.story.save
-    self.save
+    StoryUpdate.new(self).update_play
   end
 
   def wash
-    self.hygiene += 3
-    self.story.history << "You groomed your pet on #{Time.now.strftime("%A, %d on %I:%M%p")} "
-    self.story.save
-    self.save
+    StoryUpdate.new(self).update_wash
   end
 
   def feed
-    self.hunger += 5
-    self.story.history << "You fed your pet on #{Time.now.strftime("%A, %d on %I:%M%p")} "
-    self.story.save
-    self.save
+    StoryUpdate.new(self).update_feed
   end
 
   def explore
