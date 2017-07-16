@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+@import "materialize";
+
+img.circle {
+  font-size: 78px;
+}
+
+.card {
+  height:300px;
+  overflow:scroll;
+}
+
+.collection {
+  border-style:none
+}
+
+.collection-item_stat {
+  // border-bottom: 1px solid #E0E0F9;
+  padding: 10px 20px;
+  font-size: 2.2rem;
+}
+
+.collection-item_stat img {
+  height:100px;
+}
