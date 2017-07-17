@@ -1,5 +1,13 @@
-<%= image_tag( @pet.picture, :alt => @pet.name) %>
+<div class="center-align">
+  <%= image_tag( @pet.picture, :alt => @pet.name, class: "circle")%>
 
+</div>
+<div role="main" class="main">
+
+
+
+<div class="row">
+<div class="col s6">
 <ul class="collection">
   <li class="collection-item_stat valign-wrapper">
     <img src="/stats/user-name.svg" alt="" class="circle">
@@ -38,16 +46,14 @@
   </li>
 </ul>
 
-<p>Right now</p>
-<%= @pet.display_happiness %> <br>
-<%= @pet.display_hygiene %> <br>
-<%= @pet.display_hunger %> <br>
+</div>
 
-<p>Story</p>
-<div class="row right">
-       <div class="col s12 m6">
+
+
+       <div class="col s6">
+         <h1>History</h1>
          <div class="card blue-grey darken-1">
-           <div class="card-content white-text">
+           <div class="card-content white-text ">
              <ul>
              <% @pet.story.readable_history.each do |event| %>
              <li><%= "#{event.description} on #{event.event_time.localtime.strftime("%A, %d on %I:%M%p")}" %></li>
@@ -55,11 +61,27 @@
              </ul>
            </div>
          </div>
-       </div>
-     </div>
+         <h1>Right Now</h1>
 
+         <div class="">
+
+
+        <a class="btn-floating btn-large waves-effect waves-light pulse red"><i class="material-icons">#</i></a>
+        <font size=5> <%= @pet.display_happiness %> </font><br>
+        <a class="btn-floating btn-large waves-effect waves-light pulse blue"><i class="material-icons">#</i></a>
+        <font size=5> <%= @pet.display_hygiene %> </font><br>
+        <a class="btn-floating btn-large waves-effect waves-light pulse green"><i class="material-icons">#</i></a>
+        <font size=5> <%= @pet.display_hunger %> </font><br>
+
+        </div>
+      </div>
+
+
+
+ </div>
 
 <%= link_to "Take care of your pet", pet_care_path(@pet) %>
 <p><%= link_to 'Logout', sessions_path, method: :delete, data: {confirm: 'Are you sure?'} %></p>
 
 <%= link_to "User Page", user_path(@pet.user) %>
+</div>

@@ -21,8 +21,9 @@ class Pet < ApplicationRecord
 
   def display_hunger
     case self.hunger
-    when (-50..-10)
+    when (-500..-10)
       self.hunger = -10
+      self.save
       "Your pet is EXTREMELY hungry, feed it!"
     when (-9..0)
       "Your pet is really hungry."
@@ -30,18 +31,20 @@ class Pet < ApplicationRecord
        "Your pet isn't hungry."
     when (11..20)
        "Your pet is full."
-    when (21..50)
+    when (21..500)
       if self.hunger > 30
         self.hunger = 30
-        "Your pet is stuffed!"
+        self.save
       end
+      "Your pet is stuffed!"
     end
   end
 
   def display_happiness
     case self.happiness
-    when (-50..-10)
+    when (-500..-10)
       self.happiness = -10
+      self.save
        "Your pet is EXTREMELY sad, cheer it up!"
     when (-9..0)
        "Your pet is really sad."
@@ -49,9 +52,10 @@ class Pet < ApplicationRecord
        "Your pet is mellow."
     when (11..20)
        "Your pet is happy!"
-    when (21..50)
+    when (21..500)
       if self.happiness > 30
         self.happiness = 30
+        self.save
       end
        "Your pet is living the life!"
     end
@@ -59,8 +63,9 @@ class Pet < ApplicationRecord
 
   def display_hygiene
     case self.hygiene
-    when (-50..-10)
+    when (-500..-10)
       self.hygiene = -10
+      self.save
       "Your pet is EXTREMELY filthy, give it a bath!"
     when (-9..0)
       "Your pet is dirty."
@@ -68,9 +73,10 @@ class Pet < ApplicationRecord
       "Your pet is clean."
     when (11..20)
       "Your pet is sparkling!"
-    when (21..50)
+    when (21..500)
       if self.hygiene > 30
         self.hygiene = 30
+        self.save
       end
       "Your pet is shining!"
     end
