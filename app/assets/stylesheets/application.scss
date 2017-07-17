@@ -16,7 +16,9 @@
 
 @import "materialize";
 
-
+body {
+  background:#c8e6c9;
+}
 
 img.circle {
   font-size: 78px;
@@ -39,4 +41,8 @@ img.circle {
 
 .collection-item_stat img {
   height:100px;
+}
+
+.light-green li {
+    font-size: 1.4rem;
 }
